@@ -1,0 +1,32 @@
+{
+  "name": "@dmitrysev/mern-todos-app",
+  "version": "1.0.0",
+  "description": "MERN",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd ./backend && npm run dev",
+    "client": "cd ./frontend && npm run dev",
+    "dev": "concurrently \"npm run server \" \"npm run client \""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dmitiy/mern-todos-app.git"
+  },
+  "keywords": [
+    "mern",
+    "fullstack",
+    "docker",
+    "react",
+    "node",
+    "express"
+  ],
+  "author": "shkarlat.dmitry@yandex.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dmitiy/mern-todos-app/issues"
+  },
+  "homepage": "https://github.com/Dmitiy/mern-todos-app#readme"
+}
