@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Route } from './+types/todos';
 
-import todosStyles from '~/assets/styles/todos-page.module.css';
-import type { ITodo } from '~/types/todos-page/todos';
+import todosStyles from '@styles/todos-page.module.css';
+import type { ITodo } from '@Types/todos-page/todos.ts';
 
 export function meta({}: Route.MetaArgs) {
   return [
