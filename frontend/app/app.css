@@ -10,3 +10,9 @@ body {
     'Segoe UI Symbol', 'Noto Color Emoji', 'ui-sans-serif', 'system-ui',
     'sans-serif';
 }
+
+input {
+  &:hover {
+    cursor: pointer;
+  }
+}

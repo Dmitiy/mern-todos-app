@@ -6,7 +6,7 @@
     "build": "react-router build",
     "backend": "cd ../backend && npm run dev",
     "client:server": "concurrently \"npm run backend \" \"react-router dev --host \"",
-    "dev": "react-router dev --host --watch",
+    "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },

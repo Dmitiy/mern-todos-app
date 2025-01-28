@@ -27,96 +27,67 @@ function arrayFromCompleted(arr: ITodo[]): boolean[] {
 function Todos({ loaderData }: Route.ComponentProps) {
   const [todos, setTodos] = useState(loaderData);
   const [totalChecked, setTotalChecked] = useState(
-    arrayFromCompleted(loaderData).filter(Boolean).length
+    arrayFromCompleted(todos).filter(Boolean).length
   );
-  const [isCheckedAll, setIsCheckedAll] = useState(false);
-  const [checkedState, setCheckedState] = useState(
-    arrayFromCompleted(loaderData)
+  const [isCheckedAll, setIsCheckedAll] = useState(
+    arrayFromCompleted(todos).filter(Boolean).length === todos.length
   );
+  const [checkedState, setCheckedState] = useState(arrayFromCompleted(todos));
 
   const indeterminateRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // 🧨 DEBUG
-    // TypeError: Cannot set properties of null (setting 'indeterminate')
-    indeterminateRef.current!.indeterminate =
-      todos.length && !isCheckedAll && checkedState.some(Boolean);
-  }, [isCheckedAll, checkedState.some(Boolean)]);
+    updateIndeterminateState();
+  }, [totalChecked, todos.length]);
 
-  // useEffect(() => {
-  //   setTotalChecked(arrayFromCompleted(todos).filter(Boolean).length);
-  // }, [todos.length]);
-
-  const onToggleHandler = (position: number) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setTotalChecked(updatedCheckedState.filter(Boolean).length);
-
-    // 🧨 DEBUG: This is not working as expected.
-
-    // Example: 1.
-    // if (checkedState.filter(Boolean).length === 0) {
-    //   setIsCheckedAll(false);
-    //   indeterminateRef.current!.indeterminate = false;
-    // } else if (totalChecked === todos.length) {
-    //   setIsCheckedAll(true);
-    //   indeterminateRef.current!.indeterminate = false;
-    // } else {
-    //   setIsCheckedAll(false);
-    //   indeterminateRef.current!.indeterminate = false;
-    // }
-
-    // Example: 2.
-    // if (
-    //   todos.length !== updatedCheckedState.filter(Boolean).length ||
-    //   updatedCheckedState.length === 0 ||
-    //   todos.length === 0
-    // ) {
-    //   setIsCheckedAll(false);
-    // } else {
-    //   setIsCheckedAll(true);
-    // }
-
-    // Example: 3.
-    debugger;
-    if (totalChecked === 0) {
-      setIsCheckedAll(false);
-      indeterminateRef.current!.indeterminate = false;
-    } else if (totalChecked === todos.length) {
-      setIsCheckedAll(true);
-      indeterminateRef.current!.indeterminate = false;
-    } else {
-      setIsCheckedAll(false);
-      indeterminateRef.current!.indeterminate = true;
+  const updateIndeterminateState = () => {
+    // TypeError: Cannot set propertes of null (setting 'indeterminate')
+    if (!indeterminateRef.current) {
+      return;
     }
 
-    // setTotalChecked(updatedCheckedState.filter(Boolean).length);
-    setCheckedState(updatedCheckedState);
-    setTodos(
-      updatedCheckedState.map((completed, index) => ({
-        ...todos[index],
-        completed,
-      }))
-    );
+    if (totalChecked === 0) {
+      indeterminateRef.current!.checked = false;
+      indeterminateRef.current!.indeterminate = false;
+      setIsCheckedAll(false);
+    } else if (totalChecked === todos.length) {
+      indeterminateRef.current!.checked = true;
+      indeterminateRef.current!.indeterminate = false;
+      setIsCheckedAll(true);
+    } else {
+      indeterminateRef.current!.checked = false;
+      indeterminateRef.current!.indeterminate = true;
+      setIsCheckedAll(false);
+    }
   };
 
-  const onSelectAllHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsCheckedAll(!isCheckedAll);
-    setCheckedState(new Array(todos.length).fill(!isCheckedAll));
-    setTotalChecked(!isCheckedAll ? todos.length : 0);
+  const onToggleTodo = (position: number) => {
+    const updatedTodos = todos.map((todo: ITodo, index: number) =>
+      index === position ? { ...todo, completed: !todo.completed } : todo
+    );
+
+    setTodos(updatedTodos);
+    setCheckedState(arrayFromCompleted(updatedTodos));
+    setTotalChecked(arrayFromCompleted(updatedTodos).filter(Boolean).length);
+  };
+
+  const onSelectAll = () => {
     setTodos(
       todos.map((todo: ITodo) => ({ ...todo, completed: !isCheckedAll }))
     );
+    setCheckedState(new Array(todos.length).fill(!isCheckedAll));
+    setTotalChecked(!isCheckedAll ? todos.length : 0);
+    updateIndeterminateState();
   };
 
-  const onRemoveHandler = (idx: number, _id: string) => () => {
+  const onRemoveTodo = (idx: number, _id: string) => () => {
     const updatedTodos = todos.filter(
       (_: ITodo, index: number) => index !== idx
     );
-    setCheckedState(arrayFromCompleted(updatedTodos));
+
     setTodos(updatedTodos);
+    setCheckedState(arrayFromCompleted(updatedTodos));
+    setTotalChecked(arrayFromCompleted(updatedTodos).filter(Boolean).length);
   };
 
   return (
@@ -127,7 +98,7 @@ function Todos({ loaderData }: Route.ComponentProps) {
             Choose your interests {totalChecked}/{todos.length}
           </legend>
           <ul>
-            {todos.map(({ _id, title, completed }: ITodo, index: number) => {
+            {todos.map(({ _id, title }: ITodo, index: number) => {
               return (
                 <li key={_id}>
                   <label>
@@ -136,28 +107,23 @@ function Todos({ loaderData }: Route.ComponentProps) {
                       name={_id}
                       value={_id}
                       checked={checkedState[index]}
-                      onChange={() => onToggleHandler(index)}
+                      onChange={() => onToggleTodo(index)}
                     />
                     <span>{title}</span>
                   </label>
-                  ---
-                  {completed.toString()}
-                  <span onClick={onRemoveHandler(index, _id)}>&times;</span>
+                  <span onClick={onRemoveTodo(index, _id)}>&times;</span>
                 </li>
               );
             })}
           </ul>
           {todos.length > 0 && (
             <div>
-              <label>
+              <label onClick={onSelectAll}>
                 <input
                   ref={indeterminateRef}
                   className='select-all'
                   type='checkbox'
                   name='Select all'
-                  value='Select all'
-                  checked={isCheckedAll}
-                  onChange={(e) => onSelectAllHandler(e)}
                 />
                 <span>Select all</span>
               </label>
