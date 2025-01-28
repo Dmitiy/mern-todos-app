@@ -4,10 +4,10 @@ MERN
 
 Try like this:
 
-```
+```javascript
 const IMAGES = {
   image1: new URL('@images/1.jpg', import.meta.url).href,
 };
-or
+
 import img1 from '@images/1.jpg';
 ```
