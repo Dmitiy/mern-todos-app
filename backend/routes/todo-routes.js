@@ -1,4 +1,5 @@
 import express from 'express';
+
 import {
   getTodos,
   getTodoById,
@@ -9,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.get('/todo', getTodos);
-router.post('/todo', createTodo);
-router.get('/todo/:id', getTodoById);
-router.patch('/todo/:id', updateTodoById);
-router.delete('/todo/:id', deleteTodoById);
+router.get('/api/v1/todos', getTodos);
+router.post('/api/v1/todos', createTodo);
+router.get('/api/v1/todos/:id', getTodoById);
+router.patch('/api/v1/todos/:id', updateTodoById);
+router.delete('/api/v1/todos/:id', deleteTodoById);
 
 export default router;

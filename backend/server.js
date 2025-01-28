@@ -2,21 +2,24 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 import todoRouter from './routes/todo-routes.js';
 
 dotenv.config();
 
 const isDev = process.env.NODE_ENV === 'development';
-const PORT = isDev ? 8000 : process.env.PORT;
-const DB_URL = isDev
-  ? process.env.DB_URL
-  : 'mongodb://localhost:27017/mytestdb';
+const PORT = isDev ? process.env.PORT : 8000;
+const DB_URL = !isDev
+  ? 'mongodb://localhost:27017/mytestdb'
+  : process.env.DB_URL;
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(todoRouter);
 
 mongoose
