@@ -12,4 +12,5 @@ export default [
     index('routes/countries.tsx'),
     route(':countryName', 'routes/country.tsx'),
   ]),
+  route('todos', 'routes/todos.tsx'),
 ] satisfies RouteConfig;

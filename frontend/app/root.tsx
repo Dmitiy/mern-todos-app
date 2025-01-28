@@ -52,6 +52,11 @@ export default function App() {
   );
 }
 
+// HydrateFallback is rendered while the client loader is running
+export function HydrateFallback() {
+  return <div>Loading... Skeleton must be here 🪿</div>;
+}
+
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = 'Oops!';
   let details = 'An unexpected error occurred.';
