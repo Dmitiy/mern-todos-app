@@ -11,3 +11,7 @@ const IMAGES = {
 
 import img1 from '@images/1.jpg';
 ```
+
+## Indeterminate checkbox
+
+[Indeterminate checkbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox)
