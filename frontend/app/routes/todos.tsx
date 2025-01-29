@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Route } from './+types/todos';
 
-import type { ITodo } from '@Types/todos-page/todos.ts';
+import type { ITodo } from '@/types/todosPage/todos';
 
 export function meta({}: Route.MetaArgs) {
   return [
