@@ -9,7 +9,8 @@ import {
 
 import type { Route } from './+types/root';
 import stylesheet from './app.css?url';
-import Navbar from './components/navbar';
+import Navbar from '@components/navbar';
+import Aside from '@components/aside';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -49,7 +50,9 @@ export default function App() {
       <header className='header'>
         <Navbar />
       </header>
-      <aside className='aside'></aside>
+      <aside className='aside'>
+        <Aside />
+      </aside>
       <main className='main'>
         <Outlet />
       </main>
