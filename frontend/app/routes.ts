@@ -13,4 +13,7 @@ export default [
     route(':countryName', 'routes/country.tsx'),
   ]),
   route('todos', 'routes/todos.tsx'),
+
+  route('login', 'routes/login.tsx'),
+  route('registration', 'routes/registration.tsx'),
 ] satisfies RouteConfig;
