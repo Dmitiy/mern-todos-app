@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Route } from './+types/todos';
 
-import todosStyles from '@styles/todos-page.module.css';
 import type { ITodo } from '@Types/todos-page/todos.ts';
 
 export function meta({}: Route.MetaArgs) {
@@ -19,7 +18,6 @@ export async function clientLoader() {
 
 clientLoader.hydrate = true as const;
 
-// list of completed ==> [false,false,true,false,true]
 function arrayFromCompleted(arr: ITodo[]): boolean[] {
   return Array.from(arr, (x) => x.completed);
 }
@@ -41,7 +39,6 @@ function Todos({ loaderData }: Route.ComponentProps) {
   }, [totalChecked, todos.length]);
 
   const updateIndeterminateState = () => {
-    // TypeError: Cannot set propertes of null (setting 'indeterminate')
     if (!indeterminateRef.current) {
       return;
     }
@@ -91,7 +88,7 @@ function Todos({ loaderData }: Route.ComponentProps) {
   };
 
   return (
-    <div className={todosStyles.todosPage}>
+    <div className='todos'>
       <form action=''>
         <fieldset>
           <legend>

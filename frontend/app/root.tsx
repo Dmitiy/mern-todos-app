@@ -45,10 +45,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <>
-      <Navbar />
-      <Outlet />
-    </>
+    <div className='page layout'>
+      <header className='header'>
+        <Navbar />
+      </header>
+      <aside className='aside'></aside>
+      <main className='main'>
+        <Outlet />
+      </main>
+      <footer className='footer'>
+        <small>&#169; {new Date().getFullYear()} Inspired by Dmitrysev</small>
+      </footer>
+    </div>
   );
 }
 

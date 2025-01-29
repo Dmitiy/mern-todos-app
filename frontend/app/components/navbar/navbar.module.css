@@ -1,0 +1,30 @@
+.navbar {
+  align-items: center;
+  justify-items: center;
+  grid-template-areas: 'start middle end';
+}
+
+.logoLink {
+  align-items: center;
+  justify-self: flex-start;
+  grid-area: start;
+}
+
+.logoImg {
+  width: 48px;
+  height: 48px;
+}
+
+.navLinks {
+  align-items: center;
+  justify-items: center;
+  grid-area: middle;
+  a {
+    padding: 8px;
+  }
+}
+
+.navAuth {
+  justify-self: flex-end;
+  grid-area: end;
+}
