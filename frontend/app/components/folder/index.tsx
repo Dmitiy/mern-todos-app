@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import type { TreeNode } from '@Types/treeNode';
+import { NavLink } from 'react-router';
 
 function Folder({ node }: { node: TreeNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const isNotEmptyFolder = isOpen && (node.nodes?.length ?? 0) > 0;
 
+  const clickHandler = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <li>
-      <span onClick={() => setIsOpen(!isOpen)} style={{ cursor: 'pointer' }}>
+      <span onClick={clickHandler} style={{ cursor: 'pointer' }}>
         {node?.nodes ? (
           isNotEmptyFolder ? (
             <span>📂&nbsp;</span>
@@ -15,9 +19,15 @@ function Folder({ node }: { node: TreeNode }) {
             <span>📁&nbsp;</span>
           )
         ) : (
-          <span>📎&nbsp;</span>
+          <span>🔗&nbsp;</span>
         )}
-        {node.name}
+        {node?.nodes ? (
+          node.name
+        ) : (
+          <NavLink to={`${node.name.toLowerCase()}`}>
+            {node.name === '/' ? node.name.replace('/', 'Home') : node.name}
+          </NavLink>
+        )}
       </span>
       {isOpen && (
         <ul>

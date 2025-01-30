@@ -89,6 +89,7 @@ function Todos({ loaderData }: Route.ComponentProps) {
 
   return (
     <div className='todos'>
+      <h2>Welcome to Todos page!</h2>
       <form action=''>
         <fieldset>
           <legend>

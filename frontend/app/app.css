@@ -113,3 +113,14 @@ ol {
     --margin-space: 64px;
   }
 }
+
+@media screen and (min-width: 1440px) {
+  :root {
+    --margin-space: 120px;
+  }
+}
+@media screen and (min-width: 1440px) and (max-width: 1920px) {
+  :root {
+    --margin-space: 240px;
+  }
+}

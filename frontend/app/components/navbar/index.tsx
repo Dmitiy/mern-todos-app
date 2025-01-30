@@ -1,27 +1,26 @@
 import { NavLink } from 'react-router';
 
-import navbarStyles from './navbar.module.css';
+import styles from './navbar.module.css';
 import logoImg from '@images/logo.png';
+import { TREE_NODES } from '@/db/tree';
 
 function Navbar() {
+  const { name, nodes } = TREE_NODES[0];
   return (
-    <div className={`layout ${navbarStyles.navbar}`}>
-      <NavLink to='/' className={navbarStyles.logoLink}>
-        <img
-          className={navbarStyles.logoImg}
-          src={logoImg}
-          alt='love frontend'
-        />
+    <div className={`layout ${styles.navbar}`}>
+      <NavLink to='/' className={styles.logoLink}>
+        <img className={styles.logoImg} src={logoImg} alt='love frontend' />
       </NavLink>
-      <nav className={navbarStyles.navLinks}>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/about'>About</NavLink>
-        <NavLink to='/countries'>Countries</NavLink>
-        <NavLink to='/todos'>Todos</NavLink>
-      </nav>
-      <nav className={`${navbarStyles.navLinks} ${navbarStyles.navAuth}`}>
-        <NavLink to='/registration'>Registration</NavLink>
-        <NavLink to='/login'>Login</NavLink>
+      <nav className={styles.navPages}>
+        <ul className={styles.navLinks}>
+          {nodes?.map(({ name }) => (
+            <li key={name}>
+              <NavLink to={`${name.toLowerCase()}`}>
+                {name === '/' ? name.replace('/', 'Home') : name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </nav>
     </div>
   );

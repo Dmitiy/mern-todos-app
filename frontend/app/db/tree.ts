@@ -2,42 +2,44 @@ import type { TreeNode } from '@Types/treeNode';
 
 export const TREE_NODES: TreeNode[] = [
   {
-    name: 'Home',
+    name: 'Pages',
     nodes: [
-      { name: 'About', nodes: [] },
-      { name: 'Popular', nodes: [] },
+      { name: '/' },
+      { name: 'About' },
+      { name: 'Login' },
+      { name: 'Registration' },
+    ],
+  },
+  {
+    name: 'API',
+    nodes: [
       {
-        name: 'Music',
-        nodes: [
-          {
-            name: 'Rock',
-            nodes: [
-              {
-                name: 'ACDC-1.mp3',
-              },
-              {
-                name: 'ACDC-2.mp3',
-              },
-            ],
-          },
-          { name: 'Classical', nodes: [] },
-        ],
+        name: 'Examples',
+        nodes: [{ name: 'Todos' }],
       },
       {
-        name: 'Documents',
+        name: 'External',
         nodes: [
           {
-            name: 'Pictures',
-            nodes: [
-              { name: 'Dogs', nodes: [] },
-              { name: 'Cats', nodes: [] },
-            ],
+            name: 'Countries',
           },
         ],
       },
-      {
-        name: 'file.txt',
-      },
+      // {
+      //   name: 'Pictures',
+      //   nodes: [
+      //     {
+      //       name: 'Animals',
+      //       nodes: [
+      //         { name: 'Dogs', nodes: [] },
+      //         { name: 'Cats', nodes: [] },
+      //       ],
+      //     },
+      //   ],
+      // },
+      // {
+      //   name: 'file.txt',
+      // },
     ],
   },
 ];
