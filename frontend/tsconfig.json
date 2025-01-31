@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["app/*"],
+      "@ui/*": ["app/ui/*"],
       "@db/*": ["app/db/*"],
       "@assets/*": ["app/assets/*"],
       "@styles/*": ["app/assets/styles/*"],
