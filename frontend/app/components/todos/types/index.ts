@@ -3,3 +3,7 @@ export interface ITodo {
   title: string;
   completed: boolean;
 }
+
+export type TodosProps = {
+  data: ITodo[] | [];
+};

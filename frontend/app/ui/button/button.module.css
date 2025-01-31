@@ -1,9 +1,10 @@
-button {
+.button {
   display: grid;
   grid-template-areas: 'stack';
   align-items: center;
-  padding: 4px;
-
+  background-color: #d9d9d9;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  margin: 4px;
   .icon {
     visibility: hidden;
     grid-area: stack;
@@ -22,6 +23,8 @@ button {
     }
   }
   &.primary {
+    background-color: #4096ff;
+    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
   }
   &.secondary {
   }

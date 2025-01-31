@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { TreeNode } from '@Types/treeNode';
+import type { TreeNode } from '@/types/treeNode';
 import { NavLink } from 'react-router';
 
 function Folder({ node }: { node: TreeNode }) {

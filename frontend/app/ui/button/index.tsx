@@ -1,7 +1,7 @@
 import { type ElementType } from 'react';
 import classNames from 'classnames/bind';
 import styles from './button.module.css';
-import type { ButtonProps } from '@ui/types/button';
+import type { ButtonProps } from '@/ui/button/types';
 
 const defaultElement = 'button';
 
@@ -30,7 +30,7 @@ function Button<E extends ElementType = typeof defaultElement>({
 
   return (
     <TagName type={type} disabled={disabled} className={classes} {...restProps}>
-      <span className={`${styles.icon}`}>{icon}</span>
+      {icon && <span className={`${styles.icon}`}>{icon}</span>}
       <span className={`${styles.text}`}>{children}</span>
     </TagName>
   );

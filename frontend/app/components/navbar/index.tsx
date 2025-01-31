@@ -5,7 +5,7 @@ import logoImg from '@images/logo.png';
 import { TREE_NODES } from '@/db/tree';
 
 function Navbar() {
-  const { name, nodes } = TREE_NODES[0];
+  const { nodes } = TREE_NODES[0];
   return (
     <div className={`layout ${styles.navbar}`}>
       <NavLink to='/' className={styles.logoLink}>
