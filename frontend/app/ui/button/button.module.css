@@ -1,0 +1,28 @@
+button {
+  display: grid;
+  grid-template-areas: 'stack';
+  align-items: center;
+  padding: 4px;
+
+  .icon {
+    visibility: hidden;
+    grid-area: stack;
+  }
+
+  .text {
+    grid-area: stack;
+  }
+
+  &.loading {
+    .text {
+      visibility: hidden;
+    }
+    .icon {
+      visibility: visible;
+    }
+  }
+  &.primary {
+  }
+  &.secondary {
+  }
+}
