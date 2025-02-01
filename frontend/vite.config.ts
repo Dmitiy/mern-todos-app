@@ -26,11 +26,10 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './app'),
       '@ui': path.resolve(__dirname, './ui'),
-      '@db': path.resolve(__dirname, './app/db'),
+      '@shared': path.resolve(__dirname, './app/shared'),
       '@assets': path.resolve(__dirname, './app/assets'),
       '@images': path.resolve(__dirname, './app/assets/images'),
       '@styles': path.resolve(__dirname, './app/assets/styles'),
-      '@Types': path.resolve(__dirname, './app/types'),
       '@utils': path.resolve(__dirname, './app/utils'),
       '@components': path.resolve(__dirname, './app/components'),
     },

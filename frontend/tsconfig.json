@@ -17,11 +17,10 @@
     "paths": {
       "@/*": ["app/*"],
       "@ui/*": ["app/ui/*"],
-      "@db/*": ["app/db/*"],
+      "@shared/*": ["app/shared/*"],
       "@assets/*": ["app/assets/*"],
       "@styles/*": ["app/assets/styles/*"],
       "@images/*": ["./app/assets/images/*"],
-      "@Types/*": ["app/types/*"],
       "@utils/*": ["app/utils/*"],
       "@components/*": ["app/components/*"]
     },
