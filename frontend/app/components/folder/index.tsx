@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { TreeNode } from '@/types/treeNode';
 import { NavLink } from 'react-router';
+import type { TreeNode } from '@/shared/types/treeNode';
 
 function Folder({ node }: { node: TreeNode }) {
   const [isOpen, setIsOpen] = useState(false);

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router';
 
 import styles from './navbar.module.css';
 import logoImg from '@images/logo.png';
-import { TREE_NODES } from '@/db/tree';
+import { TREE_NODES } from '@/shared/tree';
 
 function Navbar() {
   const { nodes } = TREE_NODES[0];

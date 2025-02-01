@@ -1,4 +1,4 @@
-import type { TreeNode } from '@/types/treeNode';
+import type { TreeNode } from '@/shared/types/treeNode';
 
 export const TREE_NODES: TreeNode[] = [
   {
