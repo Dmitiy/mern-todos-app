@@ -3,20 +3,21 @@ import SelectAllCheckbox from '@/ui/selectAllCheckbox';
 import type { ITodo, TodosProps } from './types';
 import Button from '@/ui/button';
 import styles from './todos.module.css';
-
-function arrayFromCompleted(arr: ITodo[]): boolean[] {
-  return Array.from(arr, (x) => x.completed);
-}
+import Checkbox from '@/ui/checkbox';
+import Switch from '@/ui/switch';
+import { arrayFromProp } from './utils/arrayFromProp';
 
 function Todos({ data }: TodosProps) {
   const [todos, setTodos] = useState<ITodo[]>(data);
   const [totalChecked, setTotalChecked] = useState(
-    arrayFromCompleted(todos).filter(Boolean).length
+    arrayFromProp(todos, 'completed').filter(Boolean).length
   );
   const [isCheckedAll, setIsCheckedAll] = useState(
-    arrayFromCompleted(todos).filter(Boolean).length === todos.length
+    arrayFromProp(todos, 'completed').filter(Boolean).length === todos.length
   );
-  const [checkedState, setCheckedState] = useState(arrayFromCompleted(todos));
+  const [checkedState, setCheckedState] = useState<boolean[]>(
+    arrayFromProp(todos, 'completed').map(Boolean)
+  );
 
   const [newTodo, setNewTodo] = useState('');
   const [editTodo, setEditTodo] = useState({});
@@ -54,15 +55,17 @@ function Todos({ data }: TodosProps) {
     );
 
     setTodos(updatedTodos);
-    setCheckedState(arrayFromCompleted(updatedTodos));
-    setTotalChecked(arrayFromCompleted(updatedTodos).filter(Boolean).length);
+    setCheckedState(arrayFromProp(updatedTodos, 'completed').map(Boolean));
+    setTotalChecked(
+      arrayFromProp(updatedTodos, 'completed').filter(Boolean).length
+    );
   };
 
   const onSelectAll = () => {
     setTodos(
       todos.map((todo: ITodo) => ({ ...todo, completed: !isCheckedAll }))
     );
-    setCheckedState(new Array(todos.length).fill(!isCheckedAll));
+    setCheckedState(new Array(todos.length).fill(!isCheckedAll).map(Boolean));
     setTotalChecked(!isCheckedAll ? todos.length : 0);
     updateIndeterminateState();
   };
@@ -73,17 +76,26 @@ function Todos({ data }: TodosProps) {
     );
 
     setTodos(updatedTodos);
-    setCheckedState(arrayFromCompleted(updatedTodos));
-    setTotalChecked(arrayFromCompleted(updatedTodos).filter(Boolean).length);
+    setCheckedState(arrayFromProp(updatedTodos, 'completed'));
+    setTotalChecked(
+      arrayFromProp(updatedTodos, 'completed').filter(Boolean).length
+    );
   };
 
   const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setNewTodo(e.target.value);
+    const value = e.target.value.trim();
+
+    setNewTodo(value);
   };
 
   const onAddNewTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    if (newTodo.length === 0) {
+      return;
+    }
+
     setTodos(
       todos.concat([
         { completed: false, title: newTodo, _id: Date.now().toString() },
@@ -119,8 +131,7 @@ function Todos({ data }: TodosProps) {
             return (
               <li key={todo._id} className={`${styles.todoItem}`}>
                 <label>
-                  <input
-                    type='checkbox'
+                  <Checkbox
                     name={todo._id}
                     value={todo._id}
                     checked={checkedState[index]}
@@ -141,11 +152,14 @@ function Todos({ data }: TodosProps) {
         </ul>
         {todos.length > 0 && (
           <div className={`${styles.selectAll}`}>
-            <SelectAllCheckbox
-              ref={indeterminateRef}
-              label='Select All'
-              onSelectAll={onSelectAll}
-            />
+            <label onClick={onSelectAll}>
+              <SelectAllCheckbox
+                name='Select all'
+                ref={indeterminateRef}
+                className='selectAllCheckbox'
+              />
+              <span>Select All</span>
+            </label>
           </div>
         )}
       </fieldset>

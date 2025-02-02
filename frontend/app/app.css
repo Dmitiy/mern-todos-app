@@ -64,6 +64,7 @@ button {
 
 input,
 button,
+label,
 a {
   &:hover {
     cursor: pointer;
