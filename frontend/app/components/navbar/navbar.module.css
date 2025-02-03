@@ -19,7 +19,8 @@
   align-items: center;
   justify-items: center;
 }
-.navLinks {
+.navLinks,
+.navAuth {
   display: flex;
   align-items: center;
   a {

@@ -3,12 +3,11 @@ import type { TreeNode } from '@/shared/types/treeNode';
 export const TREE_NODES: TreeNode[] = [
   {
     name: 'Pages',
-    nodes: [
-      { name: '/' },
-      { name: 'About' },
-      { name: 'Login' },
-      { name: 'Registration' },
-    ],
+    nodes: [{ name: '/' }, { name: 'About' }, { name: 'Settings' }],
+  },
+  {
+    name: 'Auth',
+    nodes: [{ name: 'Login' }, { name: 'Signup' }],
   },
   {
     name: 'API',

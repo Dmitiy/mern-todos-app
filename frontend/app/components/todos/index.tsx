@@ -6,6 +6,7 @@ import styles from './todos.module.css';
 import Checkbox from '@/ui/checkbox';
 import Switch from '@/ui/switch';
 import { arrayFromProp } from './utils/arrayFromProp';
+import Input from '@/ui/input';
 
 function Todos({ data }: TodosProps) {
   const [todos, setTodos] = useState<ITodo[]>(data);
@@ -115,7 +116,7 @@ function Todos({ data }: TodosProps) {
         </legend>
         <div>
           <label>
-            <input
+            <Input
               type='text'
               name='addTodo'
               value={newTodo}
