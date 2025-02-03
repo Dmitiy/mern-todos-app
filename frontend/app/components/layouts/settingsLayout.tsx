@@ -111,7 +111,7 @@ function SettingsLayout() {
             🇷🇺
           </Button>
           <Button type='button' className={`${styles.button}`}>
-            
+            🍎
           </Button>
         </div>
       </div>
