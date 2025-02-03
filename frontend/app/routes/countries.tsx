@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import type { Route } from './+types/countries';
+import Input from '@/ui/input';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -31,8 +32,9 @@ export default function Countries({ loaderData }: Route.ComponentProps) {
     <div>
       <h1>Countries details</h1>
       <div>
-        <input
+        <Input
           type='search'
+          name='search'
           placeholder='Search for countries...'
           value={search}
           onChange={(e) => setSearch(e.target.value)}

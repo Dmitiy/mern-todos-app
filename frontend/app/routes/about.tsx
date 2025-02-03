@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import type { Route } from './+types/about';
 
 export function meta({}: Route.MetaArgs) {
@@ -9,122 +8,60 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function About() {
-  useEffect(() => {
-    const root = document.querySelector(':root') as HTMLElement | null;
-    const inputs = document.querySelectorAll(
-      "input[name='theme']"
-    ) as NodeListOf<HTMLInputElement>;
-
-    const theme = localStorage.getItem('theme-color');
-
-    const updateRoot = (value: string) => {
-      if (root) {
-        root.style.setProperty('--theme-color', `var(--${value})`);
-      }
-    };
-
-    if (theme) {
-      inputs.forEach((input) => {
-        if (input.value === theme) {
-          input.checked = true;
-        }
-      });
-      updateRoot(theme);
-    }
-
-    inputs.forEach((input) => {
-      input.onchange = (e: Event) => {
-        const target = e.target as HTMLInputElement;
-        updateRoot(target.value);
-        localStorage.setItem('theme-color', target.value);
-      };
-    });
-  }, []);
   return (
-    <>
-      <div id='example-wrapper'>
-        <div id='theme-picker-section' className='example-section'>
-          <input type='radio' name='theme' value='white' defaultChecked />
-          <input type='radio' name='theme' value='red' />
-          <input type='radio' name='theme' value='orange' />
-          <input type='radio' name='theme' value='yellow' />
-          <input type='radio' name='theme' value='green' />
-          <input type='radio' name='theme' value='blue' />
-          <input type='radio' name='theme' value='indigo' />
-          <input type='radio' name='theme' value='violet' />
-        </div>
-        <div id='side-bar-section' className='example-section vertical'>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-alien'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-cactus'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-code'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-cat'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-blender'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-crab'></i>
-          </button>
-        </div>
-        <div id='search-section' className='example-section'>
-          <input type='text' placeholder='Search' className='example-input' />
-        </div>
-        <div id='view-section' className='example-section'>
-          <label>View</label>
-          <button type='button' className='example-button short'>
-            <i className='fa-solid fa-grid-2'></i>
-          </button>
-          <button type='button' className='example-button short'>
-            <i className='fa-solid fa-grid'></i>
-          </button>
-          <button type='button' className='example-button short'>
-            <i className='fa-solid fa-bars'></i>
-          </button>
-        </div>
-        <div id='progress-section' className='example-section'>
-          <div className='progress-bar'>
-            <div className='progress-bar-completion'></div>
-          </div>
-        </div>
-        <div id='image-section' className='example-section vertical'>
-          <img
-            src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bW91bnRhaW5zfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-            alt='Nature!'
-          />
-          <div id='image-section-rotator'>
-            <button type='button' className='image-section-dot'></button>
-            <button type='button' className='image-section-dot'></button>
-            <button type='button' className='image-section-dot'></button>
-          </div>
-        </div>
-        <div id='shape-section' className='example-section'>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-square'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-triangle'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-circle'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-hexagon'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-star'></i>
-          </button>
-          <button type='button' className='example-button'>
-            <i className='fa-solid fa-rhombus'></i>
-          </button>
-        </div>
-      </div>
-    </>
+    <div>
+      <h2>Обо мне</h2>
+      <p>
+        C момента выбора профессии в области IT-технологий, мною было принято
+        решение идти по направлению frontend-разработчик, так как испытывал
+        интерес к красивым интерфейсам и огромным желанием научиться делать
+        такие же или лучше. Свой путь в IT начинал с верстки html-страниц, для
+        этого читал книги и справочники по html, CSS, познакомился с растровым
+        графическим редактором Photoshop. Научился делать верстку, которая могла
+        адаптироваться под различный устройства. После захотелось внести
+        какой-то интерактив на html-страницу, например, слайдер. Стал изучать
+        Javascript. С этого самого момента, настал период роста и становления на
+        путь разработчика. Лучшие практики программирования и алгоритмы, давно
+        уже описаны в книгах, задача только осмыслить и применять на практике.
+        "Банда четырёх", кажется не такой уж и бандой, с ней можно дружить.
+        Различные паттерны проектирования, имеют право на жизнь в проекте и
+        хорошо спланированная архитектура приложения доставляет мало хлопот
+        (SOLID, DRY, GRASP, KISS, YAGNI). Специализируюсь на разработке
+        программного обеспечения, информационных систем различной сложности и
+        масштаба и ряде сопутствующих услуг. Могу отметить, что работая в
+        продуктовых компаниях, смог научиться совладать со стеком технологий и
+        получить определенный коммерческий опыт и навыки.
+      </p>
+      <h3>Навыки:</h3>
+      <ul>
+        <li>HTML</li>
+        <li>CSS / module.css / SCSS</li>
+        <li>CSS in JS</li>
+        <li>JS</li>
+        <li>Angular 7/8</li>
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Redux / Redux Toolkit</li>
+        <li>Mobx</li>
+        <li>Web-Components</li>
+      </ul>
+      <h3>Интересуюсь рядом технологий:</h3>
+      <ul>
+        <li>микрофронтед архитектурой</li>
+        <li>module federation</li>
+        <li>микросервисной архитектурой</li>
+        <li>Nodejs / Deno</li>
+        <li>mongoDB</li>
+        <li>canvas</li>
+      </ul>
+      <p>
+        <a
+          href='https://github.com/Dmitiy'
+          target='_blank'
+          rel='noopener noreferrer'>
+          Профиль на GitHub
+        </a>
+      </p>
+    </div>
   );
 }

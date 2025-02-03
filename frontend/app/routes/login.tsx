@@ -1,6 +1,8 @@
 import { type RouteConfig, route } from '@react-router/dev/routes';
 import { redirect, useFetcher, data } from 'react-router';
 import type { Route } from './+types/login';
+import Input from '@/ui/input';
+import Button from '@/ui/button';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -43,26 +45,15 @@ function Login({
   return (
     <fetcher.Form method='post'>
       <p>
-        Email:
-        <input type='email' name='email' />
+        <Input type='email' name='email' /> Email:
         {errors?.email ? <em>{errors.email}</em> : null}
       </p>
-
       <p>
-        Password:
-        <input type='password' name='password' />
+        <Input type='password' name='password' /> Password:
         {errors?.password ? <em>{errors.password}</em> : null}
       </p>
 
-      <div>
-        <h1>Welcome to My Route with Props!</h1>
-        <p>Loader Data: {JSON.stringify(loaderData)}</p>
-        <p>Action Data: {JSON.stringify(actionData)}</p>
-        <p>Route Parameters: {JSON.stringify(params)}</p>
-        <p>Matched Routes: {JSON.stringify(matches)}</p>
-      </div>
-
-      <button type='submit'>Sign Up</button>
+      <Button type='submit'>Sign Up</Button>
     </fetcher.Form>
   );
 }

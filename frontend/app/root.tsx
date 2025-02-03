@@ -11,6 +11,7 @@ import type { Route } from './+types/root';
 import stylesheet from './app.css?url';
 import Navbar from '@components/navbar';
 import Menu from '@/components/menu';
+import Switch from './ui/switch';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -56,6 +57,10 @@ export default function App() {
       <main className='main'>
         <Outlet />
       </main>
+      <div className='content'>
+        <h2>🚩 Feature flags</h2>
+        <Switch id='a1' label='Theme colors palette' />
+      </div>
       <footer className='footer'>
         <small>&#169; {new Date().getFullYear()} Inspired by Dmitrysev</small>
       </footer>

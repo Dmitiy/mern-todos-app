@@ -15,5 +15,6 @@ export default [
   route('todos', 'routes/todos.tsx'),
 
   route('login', 'routes/login.tsx'),
-  route('registration', 'routes/registration.tsx'),
+  route('signUp', 'routes/signUp.tsx'),
+  route('settings', 'routes/settings.tsx'),
 ] satisfies RouteConfig;
