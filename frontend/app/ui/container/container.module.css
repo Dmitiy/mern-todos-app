@@ -1,0 +1,13 @@
+.section {
+  border: 1px solid rgba(var(--border-line), 0.1);
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding: 1rem;
+  &.vertical {
+    flex-direction: column;
+    height: max-content;
+  }
+}
