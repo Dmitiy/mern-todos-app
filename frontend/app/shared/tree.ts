@@ -7,7 +7,7 @@ export const TREE_NODES: TreeNode[] = [
   },
   {
     name: 'Auth',
-    nodes: [{ name: 'Login' }, { name: 'Signup' }],
+    nodes: [{ name: 'Login' }, { name: 'Register' }],
   },
   {
     name: 'API',
@@ -24,21 +24,6 @@ export const TREE_NODES: TreeNode[] = [
           },
         ],
       },
-      // {
-      //   name: 'Pictures',
-      //   nodes: [
-      //     {
-      //       name: 'Animals',
-      //       nodes: [
-      //         { name: 'Dogs', nodes: [] },
-      //         { name: 'Cats', nodes: [] },
-      //       ],
-      //     },
-      //   ],
-      // },
-      // {
-      //   name: 'file.txt',
-      // },
     ],
   },
 ];
