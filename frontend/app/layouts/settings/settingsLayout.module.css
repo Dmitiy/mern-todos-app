@@ -1,0 +1,94 @@
+.settingsLayout {
+  /* width: min(680px, calc(100% - 2rem)); */
+  width: auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    '⬅️ 🔍 ➡️'
+    '⬅️ 🪟 ➡️'
+    '⬅️ 🅿️ ➡️'
+    '⬅️ 🖼️ ➡️'
+    '⬅️ 🔼 ➡️';
+}
+
+.sideBarSection {
+  grid-area: ⬅️;
+  display: grid;
+  grid-template-columns: min-content;
+  align-content: flex-start;
+}
+
+.infoSection {
+  grid-area: ➡️;
+  display: grid;
+  align-content: flex-start;
+}
+
+.searchSection {
+  grid-area: 🔍;
+}
+
+.viewSection {
+  grid-area: 🪟;
+}
+
+.progressSection {
+  grid-area: 🅿️;
+}
+
+.shapeSection {
+  grid-area: 🔼;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.shapeSection > .button {
+  /* border: 1px solid rgba(var(--theme-color), 0.4); */
+  height: 100px;
+}
+
+/* @media (max-width: 500px) {
+  .settingsLayout {
+    grid-template-areas:
+      '⬅️'
+      '🔍'
+      '➡️'
+      '🪟'
+      '🅿️'
+      '🖼️'
+      '🔼';
+    margin-top: 1rem;
+  }
+
+  .button > i {
+    height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .themePickerSection {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  }
+
+  .themePickerSection > input {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
+  .viewSection {
+    flex-direction: column;
+  }
+
+  .viewSection > button {
+    width: 100%;
+  }
+
+  .sideBarSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+} */

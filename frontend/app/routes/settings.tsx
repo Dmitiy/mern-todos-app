@@ -1,4 +1,4 @@
-import SettingsLayout from '@/layouts/settings/settings-layout';
+import SettingsLayout from '@/layouts/settings/settingsLayout';
 import type { Route } from './+types/settings';
 
 export function meta({}: Route.MetaArgs) {

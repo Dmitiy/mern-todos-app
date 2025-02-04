@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import SelectAllCheckbox from '@/ui/selectAllCheckbox';
-import type { ITodo, TodosProps } from './types';
 import Button from '@/ui/button';
-import styles from './todos.module.css';
 import Checkbox from '@/ui/checkbox';
-import Switch from '@/ui/switch';
-import { arrayFromProp } from './utils/arrayFromProp';
 import Input from '@/ui/input';
+import SelectAllCheckbox from '@/ui/selectAllCheckbox';
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './todos.module.css';
+import type { ITodo, TodosProps } from './types';
+import { arrayFromProp } from './utils/arrayFromProp';
 
 function Todos({ data }: TodosProps) {
   const [todos, setTodos] = useState<ITodo[]>(data);
@@ -155,9 +154,9 @@ function Todos({ data }: TodosProps) {
           <div className={`${styles.selectAll}`}>
             <label onClick={onSelectAll}>
               <SelectAllCheckbox
+                className='selectAllCheckbox'
                 name='Select all'
                 ref={indeterminateRef}
-                className='selectAllCheckbox'
               />
               <span>Select All</span>
             </label>

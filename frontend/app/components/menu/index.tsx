@@ -1,4 +1,4 @@
-import { TREE_NODES } from '@/shared/tree';
+import { TREE_NODES } from '@/shared/constants/tree';
 import Folder from '@components/folder';
 
 import styles from '@components/menu/menu.module.css';

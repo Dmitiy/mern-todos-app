@@ -12,6 +12,8 @@ import stylesheet from './app.css?url';
 import Navbar from '@components/navbar';
 import Menu from '@/components/menu';
 import Switch from './ui/switch';
+import ThemePicker from '@/components/themePicker';
+import ProgressBarCompletion from './ui/progressBarCompletion';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -60,6 +62,7 @@ export default function App() {
       <div className='content'>
         <h2>🚩 Feature flags</h2>
         <Switch id='a1' label='Theme colors palette' />
+        <ThemePicker />
       </div>
       <footer className='footer'>
         <small>&#169; {new Date().getFullYear()} Inspired by Dmitrysev</small>
@@ -70,7 +73,11 @@ export default function App() {
 
 // HydrateFallback is rendered while the client loader is running
 export function HydrateFallback() {
-  return <div>Loading... Skeleton must be here 🪿</div>;
+  return (
+    <div>
+      <ProgressBarCompletion />
+    </div>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

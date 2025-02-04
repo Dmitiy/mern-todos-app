@@ -9,7 +9,6 @@ function Checkbox({
   className,
   checked,
 }: CheckboxProps) {
-  // ✅ bind the styles to classNames
   const cx = classNames.bind(styles);
   const classes = cx(styles.checkbox, className);
   return (

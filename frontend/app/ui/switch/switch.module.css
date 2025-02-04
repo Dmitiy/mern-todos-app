@@ -1,22 +1,20 @@
-.switchEl {
+.switchControl {
   display: grid;
-  grid-auto-columns: max-content;
-  grid-auto-flow: column;
-  label {
-    margin-right: 8px;
-  }
+  grid-template-columns: minmax(min-content, 38px) auto;
+
   input[type='checkbox'] {
     display: none;
   }
-  input[type='checkbox']:checked + .switch::before {
-    box-shadow: 0 1.28px 2.4px -1.6px rgba(0, 0, 0, 0.5) inset,
-      0 0.8px 1.28px -0.16px rgba(255, 255, 255, 0.7),
+  input[type='checkbox']:checked ~ .switch::before {
+    box-shadow: 0 1.28px 2.4px -1.6px rgba(var(--black), 0.5) inset,
+      0 0.8px 1.28px -0.16px rgba(var(--white), 0.7),
       48px 0 0 0 rgba(var(--theme-color), 1) inset;
   }
-  input[type='checkbox']:checked + .switch::after {
+  input[type='checkbox']:checked ~ .switch::after {
     left: 1.5625rem;
   }
 }
+
 .switch {
   position: relative;
   display: block;
@@ -25,37 +23,48 @@
   cursor: pointer;
   border-radius: 1.5rem;
   transition: 350ms;
-  background: linear-gradient(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0)), #ddd;
-  box-shadow: 0 1.12px 1.6px -1.6px rgba(0, 0, 0, 0.4) inset,
-    0 0.8px 1.28px -0.16px rgba(255, 255, 255, 0.7);
-  &::before {
+  background: linear-gradient(rgba(var(--black), 0.07), rgba(var(--white), 0)),
+    rgba(var(--grey), 1);
+  box-shadow: 0 1.12px 1.6px -1.6px rgba(var(--black), 0.4) inset,
+    0 0.8px 1.28px -0.16px rgba(var(--white), 0.7);
+
+  &::before,
+  &::after {
     position: absolute;
     content: '';
+    transform: translate(-50%, -50%);
+    transition: 250ms ease-in-out;
+  }
+
+  &::before {
     width: 1.75rem;
     height: 0.875rem;
     top: 0.625rem;
     left: 50%;
-    transform: translate(-50%, -50%);
     border-radius: 0.75rem;
-    transition: 250ms ease-in-out;
-    background: linear-gradient(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.1)),
+    background: linear-gradient(
+        rgba(var(--black), 0.07),
+        rgba(var(--white), 0.1)
+      ),
       #d0d0d0;
-    box-shadow: 0 1.28px 2.4px -1.6px rgba(0, 0, 0, 0.5) inset,
-      0 0.8px 1.28px -0.16px rgba(255, 255, 255, 0.7),
+    box-shadow: 0 1.28px 2.4px -1.6px rgba(var(--black), 0.5) inset,
+      0 0.8px 1.28px -0.16px rgba(var(--white), 0.7),
       0 0 0 0 rgba(var(--theme-color), 0.7) inset;
   }
+
   &::after {
-    position: absolute;
-    content: '';
     width: 0.875rem;
     height: 0.875rem;
     top: 0.625rem;
     left: 0.5625rem;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: 250ms ease-in-out;
     background: linear-gradient(#f5f5f5 10%, #eee);
-    box-shadow: 0 1.6px 2.4px -0.8px rgba(255, 255, 255, 0.9) inset,
-      0 3.2px 3.2px -1.92px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1.6px 2.4px -0.8px rgba(var(--white), 0.9) inset,
+      0 3.2px 3.2px -1.92px rgba(var(--black), 0.5);
   }
+}
+
+.switchText {
+  margin-left: 8px;
+  cursor: pointer;
 }

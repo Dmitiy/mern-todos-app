@@ -10,13 +10,13 @@ function Button<E extends ElementType = typeof defaultElement>({
   className,
   disabled = false,
   children,
+  text,
   icon = null,
   primary = false,
   secondary = false,
   as,
   ...restProps
 }: ButtonProps<E>) {
-  // ✅ bind the styles to classNames
   const cx = classNames.bind(styles);
   const classes = cx(
     styles.button,
@@ -31,7 +31,8 @@ function Button<E extends ElementType = typeof defaultElement>({
   return (
     <TagName type={type} disabled={disabled} className={classes} {...restProps}>
       {icon && <span className={`${styles.icon}`}>{icon}</span>}
-      <span className={`${styles.text}`}>{children}</span>
+      {text && <span className={`${styles.text}`}>{text}</span>}
+      {children}
     </TagName>
   );
 }

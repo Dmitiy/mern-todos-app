@@ -2,8 +2,17 @@
   display: grid;
   grid-template-areas: 'stack';
   align-items: center;
-  background-color: #d9d9d9;
-  /* box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02); */
+  justify-content: center;
+  flex-grow: 1;
+
+  &.active {
+    border: 1px solid rgb(var(--theme-color));
+  }
+  &.short {
+    color: rgba(var(--white), 1);
+    padding: 0.3rem 1.5rem;
+  }
+
   .icon {
     visibility: hidden;
     grid-area: stack;
@@ -11,6 +20,7 @@
 
   .text {
     grid-area: stack;
+    color: rgba(var(--white), 1);
   }
 
   &.loading {
@@ -22,30 +32,7 @@
     }
   }
   &.primary {
-    /* background-color: #4096ff; */
-    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
   }
   &.secondary {
   }
-}
-
-.button {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid transparent;
-  border-radius: 0.3rem;
-  color: rgb(var(--theme-color));
-  flex-grow: 1;
-  outline: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.button.short {
-  color: white;
-  padding: 0.3rem 1.5rem;
-}
-
-.button:hover,
-.button:focus {
-  border: 1px solid rgb(var(--theme-color));
 }

@@ -11,7 +11,6 @@ function Input({
   placeholder,
   defaultChecked,
 }: InputProps) {
-  // ✅ bind the styles to classNames
   const cx = classNames.bind(styles);
   const classes = cx(styles.input, className);
   return (
