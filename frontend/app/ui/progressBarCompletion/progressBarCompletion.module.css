@@ -1,0 +1,14 @@
+.progressBar {
+  background-color: rgba(var(--white), 0.04);
+  border: 1px solid rgba(var(--white), 0.1);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 100%;
+}
+
+.progressBarCompletion {
+  background-color: rgb(var(--theme-color));
+  border-radius: inherit;
+  height: 100%;
+  width: 40%;
+}
