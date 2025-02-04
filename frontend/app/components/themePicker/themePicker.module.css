@@ -1,0 +1,78 @@
+.themePickerSection {
+  margin: 0.5rem auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  button {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    height: 0.75rem;
+    width: 0.75rem;
+    margin: 0px;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+  }
+  input:before,
+  input:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: var(--z-index-pseudo-element);
+  }
+  input:after {
+    height: 0.75rem;
+    width: 0.75rem;
+  }
+  input:before {
+    display: none;
+    height: 1rem;
+    width: 1rem;
+    border: 0.2rem solid rgb(var(--white));
+  }
+  input:not(:checked):hover:before,
+  input:not(:checked):active:before {
+    display: block;
+    border-color: rgba(var(--white), 0.5);
+  }
+  input:checked:before {
+    display: block;
+  }
+  input[value='white']:after {
+    background-color: rgb(var(--white));
+  }
+  input[value='grey']:after {
+    background-color: rgb(var(--grey));
+  }
+  input[value='dark']:after {
+    background-color: rgb(var(--dark));
+  }
+  input[value='red']:after {
+    background-color: rgb(var(--red));
+  }
+  input[value='orange']:after {
+    background-color: rgb(var(--orange));
+  }
+  input[value='yellow']:after {
+    background-color: rgb(var(--yellow));
+  }
+  input[value='green']:after {
+    background-color: rgb(var(--green));
+  }
+  input[value='blue']:after {
+    background-color: rgb(var(--blue));
+  }
+  input[value='indigo']:after {
+    background-color: rgb(var(--indigo));
+  }
+  input[value='violet']:after {
+    background-color: rgb(var(--violet));
+  }
+}
