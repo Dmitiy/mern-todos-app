@@ -1,0 +1,29 @@
+.imageSection {
+  grid-area: 🖼️;
+  gap: 1rem;
+  display: grid;
+  > img {
+  }
+}
+
+.imageSectionRotator {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  > .imageSectionDot {
+    background-color: rgba(var(--theme-color), 0.4);
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 50%;
+    &.imageSectionDot:hover,
+    &.imageSectionDot:focus {
+      background-color: rgba(var(--theme-color), 0.8);
+      cursor: pointer;
+    }
+
+    &.imageSectionDot:first-child {
+      background-color: rgb(var(--theme-color));
+    }
+  }
+}
