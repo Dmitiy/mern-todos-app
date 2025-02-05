@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './todos.module.css';
 import type { ITodo, TodosProps } from './types';
 import { arrayFromProp } from './utils/arrayFromProp';
+import Container from '@/ui/container';
 
 function Todos({ data }: TodosProps) {
   const [todos, setTodos] = useState<ITodo[]>(data);
@@ -108,24 +109,25 @@ function Todos({ data }: TodosProps) {
     console.log('idx', todo, idx);
   };
   return (
-    <form action=''>
+    <form action='' className={`${styles.todosContainer}`}>
       <fieldset>
         <legend>
           Choose your interests {totalChecked}/{todos.length}
         </legend>
-        <div>
+        <Container className={styles.addTodoContainer}>
           <label>
             <Input
               type='text'
               name='addTodo'
               value={newTodo}
+              placeholder='Add new todo ...'
               onChange={(e) => onInputHandler(e)}
             />
           </label>
           <Button primary onClick={(e) => onAddNewTodo(e)}>
             New todo
           </Button>
-        </div>
+        </Container>
         <ul className={`${styles.todoList}`}>
           {todos.map((todo: ITodo, index: number) => {
             return (
@@ -143,13 +145,14 @@ function Todos({ data }: TodosProps) {
                   onClick={() => {
                     onEditTodo(todo, index);
                   }}>
-                  ✏️
+                  &#9998;
                 </Button>
-                <Button onClick={onRemoveTodo(index, todo._id)}>❌</Button>
+                <Button onClick={onRemoveTodo(index, todo._id)}>&times;</Button>
               </li>
             );
           })}
         </ul>
+
         {todos.length > 0 && (
           <div className={`${styles.selectAll}`}>
             <label onClick={onSelectAll}>
