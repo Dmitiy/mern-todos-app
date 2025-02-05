@@ -1,12 +1,12 @@
+import Slider from '@/components/slider';
 import Button from '@/ui/button';
+import Container from '@/ui/container';
 import Input from '@/ui/input';
 import ProgressBarCompletion from '@/ui/progressBarCompletion';
-import Container from '@/ui/container';
+import Switch from '@/ui/switch';
 import classNames from 'classnames/bind';
 import styles from './settingsLayout.module.css';
 import type { SettingsLayoutProps } from './types';
-import Switch from '@/ui/switch';
-import Slider from '@/components/slider';
 
 function SettingsLayout({ className }: SettingsLayoutProps) {
   const cx = classNames.bind(styles);
@@ -16,7 +16,6 @@ function SettingsLayout({ className }: SettingsLayoutProps) {
       <div className={`${classes}`}>
         <Container className={`${styles.sideBarSection}`}>
           <Button>📁</Button>
-          <Button>🚩</Button>
         </Container>
         <Container className={`${styles.infoSection}`}>
           <Switch id={'test'} label='Custom switch' />

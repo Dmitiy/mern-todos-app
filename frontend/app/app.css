@@ -217,10 +217,9 @@ ol {
 }
 
 .footer {
-  display: grid;
+  grid-area: footer;
   align-items: center;
   justify-items: center;
-  grid-area: footer;
   height: 64px;
   border-top: 1px solid rgba(var(--border-line), 0.1);
 }
