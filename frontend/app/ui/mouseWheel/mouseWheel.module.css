@@ -1,0 +1,69 @@
+.mouseIcon {
+  border: 2px solid rgba(var(--white), 1);
+  border-radius: 1rem;
+  height: 1.875rem;
+  width: 22px;
+  display: inline-block;
+  opacity: 0.7;
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    content: '';
+    width: 6px;
+    height: 0.625rem;
+    display: block;
+    border: 2px solid rgba(var(--white), 1);
+    border-radius: 0.625rem;
+  }
+}
+
+.wheel {
+  animation-name: scroll-mouse;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.1, 0, 0.5, 1, 1);
+  animation-delay: 0.1s;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+
+  position: absolute;
+  border-radius: 10px;
+  background-color: rgba(var(--white), 1);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  left: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  &:first-child {
+    top: -34px;
+    animation-delay: 0.4s;
+    animation-direction: normal;
+  }
+  &:nth-child(2) {
+    top: -25px;
+    animation-delay: 0.5s;
+    animation-direction: normal;
+  }
+  &:nth-child(3) {
+    top: -16px;
+    animation-delay: 0.6s;
+    animation-direction: normal;
+  }
+}
+@keyframes scroll-mouse {
+  0%,
+  60% {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+  70% {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+  }
+  100% {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+}
