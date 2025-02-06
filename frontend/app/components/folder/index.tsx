@@ -5,7 +5,6 @@ import type { TreeNode } from '@/shared/types/treeNode';
 function Folder({ node }: { node: TreeNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const isNotEmptyFolder = isOpen && (node.nodes?.length ?? 0) > 0;
-
   const clickHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -19,7 +18,7 @@ function Folder({ node }: { node: TreeNode }) {
             <span>📁&nbsp;</span>
           )
         ) : (
-          <span>🔗&nbsp;</span>
+          <span>├&nbsp;</span>
         )}
         {node?.nodes ? (
           node.name

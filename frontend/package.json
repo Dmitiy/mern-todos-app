@@ -3,6 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "vite": "tsc -b && vite build",
+    "preview": "vite preview",
     "build": "react-router build",
     "backend": "cd ../backend && npm run dev",
     "client:server": "concurrently \"npm run backend \" \"react-router dev --host \"",

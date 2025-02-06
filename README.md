@@ -1,7 +1,5 @@
 # mern-todos-app
 
-MERN
-
 Try like this:
 
 ```javascript
