@@ -6,7 +6,7 @@ import styles from '@components/menu/menu.module.css';
 function Menu() {
   return (
     <ul className={`${styles.menu}`}>
-      {TREE_NODES.map((node, index) => (
+      {TREE_NODES.map((node) => (
         <Folder node={node} key={node.name} />
       ))}
     </ul>

@@ -26,6 +26,7 @@
   --border-radius: 0.3rem;
 
   --active-link: 74, 104, 201;
+  --hover-link: 100, 108, 255;
 
   --z-index-header: 10;
   --z-index-pseudo-element: 1;
@@ -136,7 +137,7 @@ a {
   color: inherit;
   text-decoration: none;
   &:hover {
-    color: #ededed;
+    color: rgba(var(--hover-link), 1);
     text-decoration: underline;
   }
   &.active {
@@ -208,7 +209,7 @@ ol {
 
 .aside {
   grid-area: aside;
-  justify-self: center;
+  width: 100%;
 }
 
 .content {

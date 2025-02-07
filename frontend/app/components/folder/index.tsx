@@ -18,7 +18,7 @@ function Folder({ node }: { node: TreeNode }) {
             <span>📁&nbsp;</span>
           )
         ) : (
-          <span>├&nbsp;</span>
+          <span>&nbsp;</span>
         )}
         {node?.nodes ? (
           node.name
