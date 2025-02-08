@@ -2,6 +2,7 @@
   "name": "@dmitrysev/mern-backend-app",
   "author": "dmitrysev",
   "license": "ISC",
+  "description": "MERN application",
   "version": "1.0.0",
   "type": "module",
   "main": "server.js",
