@@ -9,11 +9,10 @@ lerna-debug.log*
 
 node_modules
 dist
+build
 dist-ssr
 *.local
 .env
-package-lock.json
-coverage
 
 # Editor directories and files
 .vscode/*
@@ -25,7 +24,3 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-
-# React Router
-/.react-router/
-/build/
