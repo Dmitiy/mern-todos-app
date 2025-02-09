@@ -1,0 +1,45 @@
+{
+  "include": [
+    "./app",
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
+  ],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": ["node", "vite/client"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "rootDirs": [".", "./.react-router/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["app/*"],
+      "@backend/*": ["backend/*"],
+      "@ui/*": ["app/ui/*"],
+      "@shared/*": ["app/shared/*"],
+      "@assets/*": ["app/assets/*"],
+      "@auth/*": ["app/auth/*"],
+      "@layouts/*": ["app/layouts/*"],
+      "@hooks/*": ["app/hooks/*"],
+      "@styles/*": ["app/assets/styles/*"],
+      "@images/*": ["app/assets/images/*"],
+      "@utils/*": ["app/utils/*"],
+      "@components/*": ["app/components/*"]
+    },
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  }
+}
