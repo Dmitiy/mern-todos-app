@@ -88,7 +88,6 @@ mongoose
   .connect(DB_URL)
   .then(() => {
     console.log('🐣 Connected to database');
-    console.log(`Server is running on: http://localhost:${PORT}`);
   })
   .catch((err) => console.log('🔥 Error: connection to Database. ', err));
 
