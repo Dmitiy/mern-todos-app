@@ -5,11 +5,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-// import path from 'node:path';
-// import { fileURLToPath } from 'node:url';
-
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 import todoRouter from './backend/routes/todo-routes.js';
 
 dotenv.config();
@@ -52,14 +47,14 @@ if (!isProduction) {
   const compression = (await import('compression')).default;
   const sirv = (await import('sirv')).default;
   app.use(compression());
-  app.use(BASE, sirv('./build/client', { extensions: [] }));
+  app.use(BASE, sirv('./build/client', { extensions: ['html'] }));
+  app.use(todoRouter);
 }
 
 // Serve HTML
-app.use('*all', async (req, res) => {
+app.use('/todos', async (req, res) => {
   try {
     const url = req.originalUrl.replace(BASE, '');
-
     /** @type {string} */
     let template;
     /** @type {import('./app/entry-server.ts').render} */
@@ -93,6 +88,7 @@ mongoose
   .connect(DB_URL)
   .then(() => {
     console.log('🐣 Connected to database');
+    console.log(`Server is running on: http://localhost:${PORT}`);
   })
   .catch((err) => console.log('🔥 Error: connection to Database. ', err));
 
