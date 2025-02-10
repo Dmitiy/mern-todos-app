@@ -27,5 +27,7 @@ coverage
 *.sw?
 
 # React Router
-/.react-router/
+.react-router/
+.react-router/
+build
 /build/
