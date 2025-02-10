@@ -8,7 +8,7 @@ function Navbar() {
   const { nodes } = TREE_NODES[0];
   const { nodes: authNodes } = TREE_NODES[1];
   return (
-    <div className={`layout ${styles.navbar}`}>
+    <div className={`${styles.navbar}`}>
       <NavLink to='/' className={styles.logoLink}>
         <img className={styles.logoImg} src={logoImg} alt='love frontend' />
       </NavLink>

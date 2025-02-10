@@ -1,13 +1,15 @@
 .navbar {
+  display: grid;
   align-items: center;
   justify-items: center;
   grid-template-areas: 'start middle end';
 }
 
 .logoLink {
-  display: flex;
-  align-items: center;
   grid-area: start;
+  display: grid;
+  align-items: center;
+  justify-self: flex-start;
 }
 
 .logoImg {
