@@ -1,0 +1,8 @@
+.menuItem {
+}
+
+.menuTitle {
+  &:hover {
+    cursor: pointer;
+  }
+}

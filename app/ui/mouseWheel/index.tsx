@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import styles from './mouseWheel.module.css';
 import type { MouseWheelProps } from './types';
 

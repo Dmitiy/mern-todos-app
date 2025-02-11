@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 
 import styles from './progressBarCompletion.module.css';
 import type { ProgressBarCompletionProps } from './types';

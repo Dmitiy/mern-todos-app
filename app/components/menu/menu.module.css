@@ -1,11 +1,11 @@
 .menu {
+  grid-area: menu;
   position: relative;
-  width: 100%;
   &:before {
     content: '';
     height: calc(100% - 0.6em);
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 0.5em;
     border-left: 1px dashed rgb(119, 118, 118);
   }
@@ -20,6 +20,11 @@
       left: 7px;
       border-bottom: 1px dashed rgb(119, 118, 118);
     }
+    &:last-child {
+      &:before {
+        /* display: none; */
+      }
+    }
   }
   li ul {
     position: relative;
@@ -27,7 +32,7 @@
       content: '';
       height: calc(100% - 0.6em);
       position: absolute;
-      top: 0px;
+      top: 0;
       left: 0.5em;
       border-left: 1px dashed rgb(119, 118, 118);
     }

@@ -8,13 +8,13 @@ import {
 } from 'react-router';
 
 import Menu from '@/components/menu';
-import ThemePicker from '@/components/themePicker';
 import Navbar from '@components/navbar';
 import type { Route } from './+types/root';
+import Logo from './components/logo';
 import stylesheet from './index.css?url';
-import ProgressBarCompletion from './ui/progressBarCompletion';
-import Switch from './ui/switch';
+import Copyright from './ui/copyright';
 import MouseWheel from './ui/mouseWheel';
+import ProgressBarCompletion from './ui/progressBarCompletion';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -54,19 +54,15 @@ export default function App() {
       <header className='header'>
         <Navbar />
       </header>
-      <aside className='aside'>
-        <Menu />
+      <aside className='aside layout'>
+        <Logo className='logoContainer' />
+        <Menu className='menuContainer' />
+        <Copyright className='asideFooter' title='Inspired by Dmitrysev' />
       </aside>
-      <main className='main'>
+      <main className='main layout'>
         <Outlet />
       </main>
-      <div className='content'>
-        <h2>🚩 Feature flags</h2>
-        <Switch id='a1' label='Theme colors palette' />
-        <ThemePicker />
-      </div>
-      <footer className='layout footer'>
-        <small>&#169; {new Date().getFullYear()} Inspired by Dmitrysev</small>
+      <footer className='footer'>
         <MouseWheel />
       </footer>
     </div>

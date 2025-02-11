@@ -1,14 +1,22 @@
-.settingsLayout {
-  /* width: min(680px, calc(100% - 2rem)); */
-  width: auto;
-  display: grid;
-  gap: 1rem;
-  grid-template-areas:
-    '⬅️ 🔍 ➡️'
-    '⬅️ 🪟 ➡️'
-    '⬅️ 🅿️ ➡️'
-    '⬅️ 🖼️ ➡️'
-    '⬅️ 🔼 ➡️';
+.settings {
+  &.layout {
+    /* width: min(60rem, calc(100% - 2rem)); */
+    display: grid;
+    gap: 1rem;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      '⬅️ 🔍 ➡️'
+      '⬅️ 🪟 ➡️'
+      '⬅️ 🅿️ ➡️'
+      '⬅️ 🖼️ ➡️'
+      '⬅️ 🔼 ➡️';
+  }
+}
+
+.settingsAside {
+  grid-area: ⬅️;
+}
+.preview {
 }
 
 .sideBarSection {

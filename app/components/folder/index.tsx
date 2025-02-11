@@ -1,32 +1,45 @@
+import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { NavLink } from 'react-router';
-import type { TreeNode } from '@/shared/types/treeNode';
+import styles from './folder.module.css';
+import type { FolderProps } from './types';
 
-function Folder({ node }: { node: TreeNode }) {
+function Folder({ node, className }: FolderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const isNotEmptyFolder = isOpen && (node.nodes?.length ?? 0) > 0;
+
   const clickHandler = () => {
     setIsOpen(!isOpen);
   };
+
+  const renderIcon = () => {
+    return node?.nodes ? (
+      isNotEmptyFolder ? (
+        <span>📂&nbsp;</span>
+      ) : (
+        <span>📁&nbsp;</span>
+      )
+    ) : (
+      <span>&nbsp;</span>
+    );
+  };
+
+  const renderItemName = () => {
+    return node?.nodes ? (
+      node.name
+    ) : (
+      <NavLink to={`${node.name.toLowerCase()}`}>
+        {node.name === '/' ? node.name.replace('/', 'Home') : node.name}
+      </NavLink>
+    );
+  };
+  const cx = classNames.bind(styles);
+  const classes = cx(styles.menuItem, className);
   return (
-    <li>
-      <span onClick={clickHandler} style={{ cursor: 'pointer' }}>
-        {node?.nodes ? (
-          isNotEmptyFolder ? (
-            <span>📂&nbsp;</span>
-          ) : (
-            <span>📁&nbsp;</span>
-          )
-        ) : (
-          <span>&nbsp;</span>
-        )}
-        {node?.nodes ? (
-          node.name
-        ) : (
-          <NavLink to={`${node.name.toLowerCase()}`}>
-            {node.name === '/' ? node.name.replace('/', 'Home') : node.name}
-          </NavLink>
-        )}
+    <li className={classes}>
+      <span className={`${styles.menuTitle}`} onClick={clickHandler}>
+        {renderIcon()}
+        {renderItemName()}
       </span>
       {isOpen && (
         <ul>

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 
 import styles from './container.module.css';
 import type { ContainerProps } from './types';

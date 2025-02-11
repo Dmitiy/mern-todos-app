@@ -1,0 +1,23 @@
+.logoContainer {
+  grid-area: logo;
+  height: 4rem;
+  display: grid;
+  justify-content: center;
+  will-change: filter;
+  border-bottom: 1px solid rgba(var(--border-line), 0.1);
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 2em #e7e8f2aa);
+  }
+}
+
+.logoLink {
+  display: grid;
+  align-items: center;
+  justify-self: flex-start;
+}
+
+.logoImg {
+  width: inherit;
+  height: 3rem;
+}

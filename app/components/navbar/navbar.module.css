@@ -1,25 +1,14 @@
 .navbar {
   display: grid;
   align-items: center;
-  justify-items: center;
-  grid-template-areas: 'start middle end';
+  grid-template-areas: 'middle end';
+  grid-template-columns: auto auto;
 }
 
-.logoLink {
-  grid-area: start;
-  display: grid;
-  align-items: center;
-  justify-self: flex-start;
-}
-
-.logoImg {
-  width: 48px;
-  height: 48px;
-}
 .navPages {
   grid-area: middle;
+  display: grid;
   align-items: center;
-  justify-items: center;
 }
 .navLinks,
 .navAuth {
