@@ -8,6 +8,7 @@ import classNames from 'classnames/bind';
 import styles from './settingsLayout.module.css';
 import type { SettingsLayoutProps } from './types';
 import ThemePicker from '@/components/themePicker';
+import RippleInput from '@/components/rippleInput';
 
 function SettingsLayout({ className }: SettingsLayoutProps) {
   const cx = classNames.bind(styles);
@@ -22,6 +23,20 @@ function SettingsLayout({ className }: SettingsLayoutProps) {
           </Container>
           <Container className={`${styles.infoSection}`}>
             <Switch id={'test'} label='Custom switch' />
+            <RippleInput
+              type='checkbox'
+              id='rippleCh1'
+              name='rippleCh1'
+              label='checkbox ripple'
+            />
+            <RippleInput
+              type='checkbox'
+              id='rippleCh2'
+              name='rippleCh2'
+              label='checkbox ripple'
+            />
+            <RippleInput type='radio' name='rippleRa' label='radio ripple' />
+            <RippleInput type='radio' name='rippleRa' label='radio ripple' />
           </Container>
           <Container className={`${styles.searchSection}`}>
             <Input

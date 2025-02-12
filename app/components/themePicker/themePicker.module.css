@@ -17,6 +17,7 @@
     position: relative;
     cursor: pointer;
   }
+  /* 🔥 TODO FIX: Firefox & Edge do not support :after and :before for input fields */
   input:before,
   input:after {
     content: '';

@@ -20,11 +20,6 @@
       left: 7px;
       border-bottom: 1px dashed rgb(119, 118, 118);
     }
-    &:last-child {
-      &:before {
-        /* display: none; */
-      }
-    }
   }
   li ul {
     position: relative;

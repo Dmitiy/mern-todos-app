@@ -1,0 +1,80 @@
+.rippleControl {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr minmax(min-content, auto);
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    display: none;
+
+    &:checked ~ .rippleInput {
+      &::before {
+        width: 1rem;
+        height: 1rem;
+        content: '✔️';
+        color: inherit;
+        font-size: 0.5rem;
+        background-color: rgb(var(--theme-color));
+      }
+      &::after {
+        animation: click-wave 0.65s;
+        left: 50%;
+        top: 16%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(#f5f5f5 10%, #eee);
+        position: relative;
+      }
+    }
+  }
+  input[type='radio'] ~ .rippleInput,
+  input[type='radio']:checked ~ .rippleInput {
+    border-radius: 50%;
+    &::before,
+    &::after {
+      border-radius: inherit;
+    }
+  }
+}
+
+.rippleInput {
+  appearance: none;
+  position: relative;
+  height: 1rem;
+  width: 1rem;
+  color: inherit;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--theme-color));
+  background-color: rgba(var(--theme-color), 0.1);
+  transition: all 0.15s ease-out 0s;
+  &:hover {
+    cursor: pointer;
+  }
+  &::before,
+  &::after {
+    content: '';
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: var(--z-index-pseudo-element);
+  }
+}
+
+@keyframes click-wave {
+  0% {
+    height: 1rem;
+    width: 1rem;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 3rem;
+    width: 3rem;
+    opacity: 0;
+  }
+}
