@@ -8,7 +8,8 @@
     margin-bottom: 12px;
   }
 }
-.addTodoContainer {
+.addTodoContainer,
+.searchContainer {
   margin-bottom: 1rem;
   display: grid;
   grid-template-columns: 1fr max-content;
@@ -61,4 +62,9 @@
   grid-template-columns: max-content;
   grid-auto-flow: column;
   align-items: center;
+}
+
+.highlight {
+  /* background-color: rgba(var(--theme-color), 0.4); */
+  background-color: rgba(var(--yellow), 0.4);
 }

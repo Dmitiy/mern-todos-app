@@ -1,11 +1,18 @@
 import classNames from 'classnames/bind';
 import styles from './rippleInput.module.css';
 import type { RippleInputProps } from './types';
-import { useEffect, useRef, useState } from 'react';
 
-function RippleInput({ className, id, name, label, type }: RippleInputProps) {
+function RippleInput({
+  className,
+  id,
+  name,
+  label,
+  type,
+  ref,
+  onClick,
+}: RippleInputProps) {
   // const [isActive, setIsActive] = useState(false);
-  const rippleInputRef = useRef<HTMLInputElement>(null);
+  // const rippleInputRef = useRef<HTMLInputElement>(null);
 
   // useEffect(() => {
   //   if (rippleInputRef.current) {
@@ -21,8 +28,8 @@ function RippleInput({ className, id, name, label, type }: RippleInputProps) {
   const classes = cx(styles.rippleControl, className);
 
   return (
-    <label htmlFor={id} className={classes}>
-      <input ref={rippleInputRef} type={type} id={id} name={name} />
+    <label htmlFor={id} className={classes} onClick={onClick}>
+      <input ref={ref} type={type} id={id} name={name} />
       <span className={styles.rippleInput}></span>
       {label}
     </label>

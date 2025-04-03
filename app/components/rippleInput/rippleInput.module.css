@@ -1,5 +1,6 @@
 .rippleControl {
   display: grid;
+  align-items: center;
   grid-template-rows: auto;
   grid-template-columns: 1fr minmax(min-content, auto);
 
@@ -44,6 +45,7 @@
   height: 1rem;
   width: 1rem;
   color: inherit;
+  margin-right: 8px;
   display: grid;
   align-items: center;
   justify-content: center;
