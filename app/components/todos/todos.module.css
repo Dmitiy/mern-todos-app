@@ -21,23 +21,37 @@
 
 .todoList {
   display: grid;
+  li {
+    padding: 8px 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: column;
+    align-items: center;
+    transition: 100ms linear;
+    border-radius: var(--border-radius);
+    &:hover {
+      background-color: rgba(var(--theme-color), 0.4);
+    }
+    &.editTodoItem {
+      display: grid;
+      align-items: center;
+      grid-template-rows: 1fr;
+      gap: 1rem;
+      grid-template-columns: 1rem minmax(max-content, 1fr) minmax(
+          min-content,
+          max-content
+        );
+      border-radius: var(--border-radius);
+      background-color: rgba(var(--theme-color), 0.4);
+      border: 1px dashed rgba(var(--theme-color), 1);
+      button {
+        padding: 0.625rem;
+      }
+    }
+  }
 }
 
 .todoItem {
-  padding: 8px 16px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-flow: column;
-  align-items: center;
-  transition: 100ms linear;
-  border-radius: var(--border-radius);
-  &:hover {
-    background-color: rgba(var(--theme-color), 0.4);
-  }
-
-  label {
-  }
-
   input[type='checkbox'] {
     margin-right: 8px;
   }

@@ -69,7 +69,7 @@ function Todos({ data }: TodosProps) {
 
   const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const value = e.target.value.trim();
+    const value = e.target.value;
 
     setNewTodo(value);
   };
@@ -89,17 +89,26 @@ function Todos({ data }: TodosProps) {
     setNewTodo('');
   };
 
-  const onEditTodo = (todo: ITodo, idx: any) => {
-    console.log('idx', todo, idx);
-    // e.preventDefault();
+  const onEditTodo = (e: React.MouseEvent<HTMLButtonElement>, todo: ITodo) => {
+    setEditTodo(todo);
+    setIsEditTodo(true);
+  };
 
-    // setTodos(
-    //   todos.map((todo: ITodo, index: number) =>
-    //     index === idx ? { ...todo, title: newTodo } : todo
-    //   )
-    // );
-    // setNewTodo('');
-    // setIsEditTodo(false);
+  const onEditTodoHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    idx: number
+  ) => {
+    e.preventDefault();
+    const value = e.target.value;
+    setTodos(
+      todos.map((todo: ITodo, index: number) =>
+        index === idx ? { ...todo, title: value } : todo
+      )
+    );
+  };
+
+  const onSaveEditTodo = () => {
+    setIsEditTodo(false);
   };
 
   const onSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,7 +149,32 @@ function Todos({ data }: TodosProps) {
         <Suspense fallback={<h2>Загрузка...</h2>}>
           <ul className={styles.todoList}>
             {todos.map((todo: ITodo, index: number) => {
-              return (
+              const isEditItemTodo = isEditTodo && editTodo._id === todo._id;
+              return isEditItemTodo ? (
+                <li
+                  key={todo._id}
+                  className={
+                    isEditItemTodo ? styles.editTodoItem : styles.todoItem
+                  }>
+                  <Checkbox
+                    name={todo._id}
+                    value={todo._id}
+                    checked={checkedState[index]}
+                    onChange={() => onToggleTodo(index)}
+                  />
+                  <Input
+                    type='text'
+                    name={todo._id}
+                    value={todo.title}
+                    placeholder={todo.title}
+                    onChange={(e) => {
+                      onEditTodoHandler(e, index);
+                    }}
+                  />
+
+                  <Button onClick={onSaveEditTodo}>Save todo</Button>
+                </li>
+              ) : (
                 <li key={todo._id} className={styles.todoItem}>
                   <Checkbox
                     label={todo.title}
@@ -150,8 +184,8 @@ function Todos({ data }: TodosProps) {
                     onChange={() => onToggleTodo(index)}
                   />
                   <Button
-                    onClick={() => {
-                      onEditTodo(todo, index);
+                    onClick={(e) => {
+                      onEditTodo(e, todo);
                     }}>
                     &#9998;
                   </Button>

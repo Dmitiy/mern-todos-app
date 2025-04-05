@@ -3,7 +3,7 @@ import styles from './switch.module.css';
 import type { SwitchProps } from './types';
 import { useEffect, useRef, useState } from 'react';
 
-function Switch({ className, id, label }: SwitchProps) {
+function SwitchCheckbox({ className, id, label }: SwitchProps) {
   const [isActiveSwitch, setIsActiveSwitch] = useState(false);
   const switchInputRef = useRef<HTMLInputElement>(null);
 
@@ -34,4 +34,4 @@ function Switch({ className, id, label }: SwitchProps) {
   );
 }
 
-export default Switch;
+export default SwitchCheckbox;

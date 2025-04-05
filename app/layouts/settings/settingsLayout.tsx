@@ -1,14 +1,14 @@
+import RippleInput from '@/components/rippleInput';
 import Slider from '@/components/slider';
+import ThemePicker from '@/components/themePicker';
 import Button from '@/ui/button';
 import Container from '@/ui/container';
 import Input from '@/ui/input';
 import ProgressBarCompletion from '@/ui/progressBarCompletion';
-import Switch from '@/ui/switch';
+import Switch from '@/ui/switchCheckbox';
 import classNames from 'classnames/bind';
 import styles from './settingsLayout.module.css';
 import type { SettingsLayoutProps } from './types';
-import ThemePicker from '@/components/themePicker';
-import RippleInput from '@/components/rippleInput';
 
 function SettingsLayout({ className }: SettingsLayoutProps) {
   const cx = classNames.bind(styles);
