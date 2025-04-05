@@ -11,19 +11,6 @@ function RippleInput({
   ref,
   onClick,
 }: RippleInputProps) {
-  // const [isActive, setIsActive] = useState(false);
-  // const rippleInputRef = useRef<HTMLInputElement>(null);
-
-  // useEffect(() => {
-  //   if (rippleInputRef.current) {
-  //     rippleInputRef.current.checked = isActive;
-  //   }
-  // }, [isActive]);
-
-  // const onToggleRipple = () => {
-  //   setIsActive((prev) => !prev);
-  // };
-
   const cx = classNames.bind(styles);
   const classes = cx(styles.rippleControl, className);
 

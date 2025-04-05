@@ -3,13 +3,8 @@ import Checkbox from '@/ui/checkbox';
 import Container from '@/ui/container';
 import Input from '@/ui/input';
 import SelectAllCheckbox from '@/ui/selectAllCheckbox';
-import React, {
-  Suspense,
-  useDeferredValue,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import TotalCounter from '@/ui/totalCounter';
+import React, { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import styles from './todos.module.css';
 import type { ITodo, TodosProps } from './types';
 import { arrayFromProp } from './utils/arrayFromProp';
@@ -23,22 +18,15 @@ function Todos({ data }: TodosProps) {
   const [totalChecked, setTotalChecked] = useState(
     arrayFromProp(todos, 'completed').filter(Boolean).length
   );
-  const [isCheckedAll, setIsCheckedAll] = useState(
-    arrayFromProp(todos, 'completed').filter(Boolean).length === todos.length
-  );
+
   const [checkedState, setCheckedState] = useState<boolean[]>(
     arrayFromProp(todos, 'completed').map(Boolean)
   );
 
   const [newTodo, setNewTodo] = useState('');
+
   const [editTodo, setEditTodo] = useState({});
   const [isEditTodo, setIsEditTodo] = useState(false);
-
-  const indeterminateRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    updateIndeterminateState();
-  }, [totalChecked, todos.length]);
 
   useEffect(() => {
     const filteredTodos = findMatches(data, search);
@@ -47,30 +35,7 @@ function Todos({ data }: TodosProps) {
     setTodos(filteredTodos);
     setCheckedState(completedList.map(Boolean));
     setTotalChecked(completedList.filter(Boolean).length);
-    setIsCheckedAll(
-      completedList.filter(Boolean).length === filteredTodos.length
-    );
   }, [search]);
-
-  const updateIndeterminateState = () => {
-    if (!indeterminateRef.current) {
-      return;
-    }
-
-    if (totalChecked === 0) {
-      indeterminateRef.current!.checked = false;
-      indeterminateRef.current!.indeterminate = false;
-      setIsCheckedAll(false);
-    } else if (totalChecked === todos.length) {
-      indeterminateRef.current!.checked = true;
-      indeterminateRef.current!.indeterminate = false;
-      setIsCheckedAll(true);
-    } else {
-      indeterminateRef.current!.checked = false;
-      indeterminateRef.current!.indeterminate = true;
-      setIsCheckedAll(false);
-    }
-  };
 
   const onToggleTodo = (position: number) => {
     const updatedTodos = todos.map((todo: ITodo, index: number) =>
@@ -84,13 +49,10 @@ function Todos({ data }: TodosProps) {
     setTotalChecked(completedList.filter(Boolean).length);
   };
 
-  const onSelectAll = () => {
-    setTodos(
-      todos.map((todo: ITodo) => ({ ...todo, completed: !isCheckedAll }))
-    );
-    setCheckedState(new Array(todos.length).fill(!isCheckedAll).map(Boolean));
-    setTotalChecked(!isCheckedAll ? todos.length : 0);
-    updateIndeterminateState();
+  const onSelectAll = (isAll: boolean) => {
+    setTodos(todos.map((todo: ITodo) => ({ ...todo, completed: isAll })));
+    setCheckedState(new Array(todos.length).fill(isAll).map(Boolean));
+    setTotalChecked(isAll ? todos.length : 0);
   };
 
   const onRemoveTodo = (idx: number, _id: string) => () => {
@@ -150,53 +112,43 @@ function Todos({ data }: TodosProps) {
     <form action='' className={`${styles.todosContainer}`}>
       <fieldset>
         <legend>
-          Choose your interests {totalChecked}/{todos.length}
+          <TotalCounter
+            text={`Choose your interests ${totalChecked}/${todos.length}`}
+          />
         </legend>
         <Container className={styles.searchContainer}>
-          <label>
-            <Input
-              type='search'
-              name='search'
-              value={deferredQuery}
-              placeholder='Search todo ...'
-              onChange={(e) => onSearchHandler(e)}
-            />
-          </label>
+          <Input
+            type='search'
+            name='search'
+            value={deferredQuery}
+            placeholder='Search todo ...'
+            onChange={(e) => onSearchHandler(e)}
+          />
         </Container>
         <Container className={styles.addTodoContainer}>
-          <label>
-            <Input
-              type='text'
-              name='addTodo'
-              value={newTodo}
-              placeholder='Add new todo ...'
-              onChange={(e) => onInputHandler(e)}
-            />
-          </label>
+          <Input
+            type='text'
+            name='addTodo'
+            value={newTodo}
+            placeholder='Add new todo ...'
+            onChange={(e) => onInputHandler(e)}
+          />
           <Button primary onClick={(e) => onAddNewTodo(e)}>
             New todo
           </Button>
         </Container>
         <Suspense fallback={<h2>Загрузка...</h2>}>
-          <ul className={`${styles.todoList}`}>
+          <ul className={styles.todoList}>
             {todos.map((todo: ITodo, index: number) => {
-              const regExp = new RegExp(search, 'gi');
-              const matchTitle = todo.title.replace(
-                regExp,
-                `<mark class="${styles.highlight}">${search}</mark>`
-              );
-              const matchTitleHTML = { __html: matchTitle };
               return (
-                <li key={todo._id} className={`${styles.todoItem}`}>
-                  <label>
-                    <Checkbox
-                      name={todo._id}
-                      value={todo._id}
-                      checked={checkedState[index]}
-                      onChange={() => onToggleTodo(index)}
-                    />
-                    <span dangerouslySetInnerHTML={matchTitleHTML} />
-                  </label>
+                <li key={todo._id} className={styles.todoItem}>
+                  <Checkbox
+                    label={todo.title}
+                    name={todo._id}
+                    value={todo._id}
+                    checked={checkedState[index]}
+                    onChange={() => onToggleTodo(index)}
+                  />
                   <Button
                     onClick={() => {
                       onEditTodo(todo, index);
@@ -212,23 +164,13 @@ function Todos({ data }: TodosProps) {
           </ul>
           {todos.length > 0 && (
             <div className={`${styles.selectAll}`}>
-              <label onClick={onSelectAll}>
-                <SelectAllCheckbox
-                  className='selectAllCheckbox'
-                  name='Select all'
-                  ref={indeterminateRef}
-                />
-                <span>Select All</span>
-              </label>
-              {/* <RippleInput
-                className='selectAllCheckbox'
+              <SelectAllCheckbox
                 name='Select all'
                 label='Select all'
-                ref={indeterminateRef}
-                type='checkbox'
-                id='selectAll'
-                onClick={onSelectAll}
-              /> */}
+                totalItems={todos.length}
+                totalChecked={totalChecked}
+                onSelectAll={onSelectAll}
+              />
             </div>
           )}
         </Suspense>

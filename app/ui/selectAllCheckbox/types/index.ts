@@ -1,7 +1,8 @@
-import { type Ref } from 'react';
-
 export type SelectAllCheckboxProps = {
-  ref: Ref<HTMLInputElement>;
   name: string;
+  totalChecked: number;
+  totalItems: number;
+  label?: string;
   className?: string;
+  onSelectAll: (isAllChecked: boolean) => void;
 };
