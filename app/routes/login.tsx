@@ -1,6 +1,6 @@
 import Button from '@/ui/button';
 import Input from '@/ui/input';
-import { data, useFetcher } from 'react-router';
+import { data, redirect, useFetcher } from 'react-router';
 import type { Route } from './+types/login';
 
 export function meta({}: Route.MetaArgs) {
@@ -28,18 +28,24 @@ export async function action({ request }: Route.ActionArgs) {
   if (Object.keys(errors).length > 0) {
     return data({ errors }, { status: 400 });
   }
+  // TODO: - check is existing user on db
+  // - if not existing then redirect to registration form
+  // else redirect to some page with access
+
+  if (email === 'a@a.ru' && password === '123') {
+    return redirect('/settings');
+  }
 
   // Redirect to home if validation is successful
-  // return redirect('/login');
 }
 
-function Login({}: Route.ComponentProps) {
+function Login(_: Route.ComponentProps) {
   let fetcher = useFetcher();
   let errors = fetcher.data?.errors;
   return (
     <fetcher.Form method='post'>
       <p>
-        <Input type='email' name='email' /> Email:
+        <Input type='email' name='email' defaultValue='a@a.ru' /> Email:
         {errors?.email ? <em>{errors.email}</em> : null}
       </p>
       <p>

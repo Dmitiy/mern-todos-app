@@ -1,16 +1,11 @@
 .todosContainer {
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-flow: column;
-  legend {
-    width: 100%;
-    margin-bottom: 12px;
-  }
+  gap: 1rem;
 }
 .addTodoContainer,
 .searchContainer {
-  margin-bottom: 1rem;
+  gap: 1rem;
   display: grid;
   grid-template-columns: 1fr max-content;
 

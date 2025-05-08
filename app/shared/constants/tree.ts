@@ -3,7 +3,7 @@ import type { TreeNode } from '@/shared/types/treeNode';
 export const TREE_NODES: TreeNode[] = [
   {
     name: 'Pages',
-    nodes: [{ name: '/' }, { name: 'About' }, { name: 'Settings' }],
+    nodes: [{ name: '/' }, { name: 'Settings' }],
   },
   {
     name: 'Auth',

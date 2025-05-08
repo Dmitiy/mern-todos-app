@@ -112,7 +112,6 @@ button {
   outline: none;
   border-radius: var(--border-radius);
   border: 1px solid rgba(var(--theme-color), 0.4);
-  /* background-color: rgba(var(--theme-color), 0.4); */
   background-color: transparent;
   &:hover,
   &:focus {

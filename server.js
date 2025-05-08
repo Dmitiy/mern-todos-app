@@ -1,9 +1,9 @@
-import fs from 'node:fs/promises';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import bodyParser from 'body-parser';
+import fs from 'node:fs/promises';
 
 import todoRouter from './backend/routes/todo-routes.js';
 
@@ -24,6 +24,14 @@ const templateHtml = isProduction
 
 // Create http server
 const app = express();
+
+// Connect to database mongo
+mongoose
+  .connect(DB_URL)
+  .then(() => {
+    console.log('🐣 Connected to database');
+  })
+  .catch((err) => console.log('🔥 Error: connection to Database. ', err));
 
 app.use(cors());
 app.use(express.json());
@@ -82,14 +90,6 @@ app.use('/todos', async (req, res) => {
     res.status(500).end(e.stack);
   }
 });
-
-// Connect to database mongo
-mongoose
-  .connect(DB_URL)
-  .then(() => {
-    console.log('🐣 Connected to database');
-  })
-  .catch((err) => console.log('🔥 Error: connection to Database. ', err));
 
 // Start http server
 app.listen(PORT, (err) => {

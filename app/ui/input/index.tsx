@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import type { InputProps } from './types';
 import styles from './input.module.css';
+import type { ComponentProps } from 'react';
 
 function Input({
   type,
@@ -10,7 +11,8 @@ function Input({
   onChange,
   placeholder,
   defaultChecked,
-}: InputProps) {
+  ...rest
+}: InputProps & ComponentProps<'input'>) {
   const cx = classNames.bind(styles);
   const classes = cx(styles.input, className);
   return (
@@ -23,6 +25,7 @@ function Input({
         placeholder={placeholder}
         className={classes}
         onChange={onChange}
+        {...rest}
       />
     </>
   );

@@ -4,11 +4,11 @@ import Container from '@/ui/container';
 import Input from '@/ui/input';
 import SelectAllCheckbox from '@/ui/selectAllCheckbox';
 import TotalCounter from '@/ui/totalCounter';
+import { arrayFromProp } from '@shared/utils/arrayFromProp';
+import { findMatches } from '@shared/utils/findMatches';
 import React, { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import styles from './todos.module.css';
 import type { ITodo, TodosProps } from './types';
-import { arrayFromProp } from './utils/arrayFromProp';
-import { findMatches } from './utils/findMatches';
 
 function Todos({ data }: TodosProps) {
   const [search, setSearch] = useState('');
@@ -25,11 +25,15 @@ function Todos({ data }: TodosProps) {
 
   const [newTodo, setNewTodo] = useState('');
 
-  const [editTodo, setEditTodo] = useState({});
+  const [editTodo, setEditTodo] = useState({
+    completed: false,
+    title: '',
+    _id: '',
+  });
   const [isEditTodo, setIsEditTodo] = useState(false);
 
   useEffect(() => {
-    const filteredTodos = findMatches(data, search);
+    const filteredTodos = findMatches(data, 'title', search);
     const completedList = arrayFromProp(filteredTodos, 'completed');
 
     setTodos(filteredTodos);
@@ -70,7 +74,6 @@ function Todos({ data }: TodosProps) {
   const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const value = e.target.value;
-
     setNewTodo(value);
   };
 
@@ -83,7 +86,7 @@ function Todos({ data }: TodosProps) {
 
     setTodos(
       todos.concat([
-        { completed: false, title: newTodo, _id: Date.now().toString() },
+        { completed: false, title: newTodo, _id: window.crypto.randomUUID() },
       ])
     );
     setNewTodo('');
@@ -118,98 +121,91 @@ function Todos({ data }: TodosProps) {
   };
 
   return (
-    <form action='' className={`${styles.todosContainer}`}>
-      <fieldset>
-        <legend>
-          <TotalCounter
-            text={`Choose your interests ${totalChecked}/${todos.length}`}
-          />
-        </legend>
-        <Container className={styles.searchContainer}>
-          <Input
-            type='search'
-            name='search'
-            value={deferredQuery}
-            placeholder='Search todo ...'
-            onChange={(e) => onSearchHandler(e)}
-          />
-        </Container>
-        <Container className={styles.addTodoContainer}>
-          <Input
-            type='text'
-            name='addTodo'
-            value={newTodo}
-            placeholder='Add new todo ...'
-            onChange={(e) => onInputHandler(e)}
-          />
-          <Button primary onClick={(e) => onAddNewTodo(e)}>
-            New todo
-          </Button>
-        </Container>
-        <Suspense fallback={<h2>Загрузка...</h2>}>
-          <ul className={styles.todoList}>
-            {todos.map((todo: ITodo, index: number) => {
-              const isEditItemTodo = isEditTodo && editTodo._id === todo._id;
-              return isEditItemTodo ? (
-                <li
-                  key={todo._id}
-                  className={
-                    isEditItemTodo ? styles.editTodoItem : styles.todoItem
-                  }>
-                  <Checkbox
-                    name={todo._id}
-                    value={todo._id}
-                    checked={checkedState[index]}
-                    onChange={() => onToggleTodo(index)}
-                  />
-                  <Input
-                    type='text'
-                    name={todo._id}
-                    value={todo.title}
-                    placeholder={todo.title}
-                    onChange={(e) => {
-                      onEditTodoHandler(e, index);
-                    }}
-                  />
-
-                  <Button onClick={onSaveEditTodo}>Save todo</Button>
-                </li>
-              ) : (
-                <li key={todo._id} className={styles.todoItem}>
-                  <Checkbox
-                    label={todo.title}
-                    name={todo._id}
-                    value={todo._id}
-                    checked={checkedState[index]}
-                    onChange={() => onToggleTodo(index)}
-                  />
-                  <Button
-                    onClick={(e) => {
-                      onEditTodo(e, todo);
-                    }}>
-                    &#9998;
-                  </Button>
-                  <Button onClick={onRemoveTodo(index, todo._id)}>
-                    &times;
-                  </Button>
-                </li>
-              );
-            })}
-          </ul>
-          {todos.length > 0 && (
-            <div className={`${styles.selectAll}`}>
-              <SelectAllCheckbox
-                name='Select all'
-                label='Select all'
-                totalItems={todos.length}
-                totalChecked={totalChecked}
-                onSelectAll={onSelectAll}
-              />
-            </div>
-          )}
-        </Suspense>
-      </fieldset>
-    </form>
+    <div className={`${styles.todosContainer}`}>
+      <TotalCounter
+        text={`Choose your interests ${totalChecked}/${todos.length}`}
+      />
+      <Container className={styles.searchContainer}>
+        <Input
+          type='search'
+          name='search'
+          placeholder='Search todo ...'
+          value={deferredQuery}
+          onChange={(e) => onSearchHandler(e)}
+        />
+      </Container>
+      <Container className={styles.addTodoContainer}>
+        <Input
+          type='text'
+          name='addTodo'
+          value={newTodo}
+          placeholder='Add new todo ...'
+          onChange={(e) => onInputHandler(e)}
+        />
+        <Button primary onClick={(e) => onAddNewTodo(e)}>
+          New todo
+        </Button>
+      </Container>
+      <Suspense fallback={<h2>Загрузка...</h2>}>
+        <ul className={styles.todoList}>
+          {todos.map((todo: ITodo, index: number) => {
+            const isEditItemTodo = isEditTodo && editTodo._id === todo._id;
+            return isEditItemTodo ? (
+              <li
+                key={todo._id}
+                className={
+                  isEditItemTodo ? styles.editTodoItem : styles.todoItem
+                }>
+                <Checkbox
+                  name={todo._id}
+                  value={todo._id}
+                  checked={checkedState[index]}
+                  onChange={() => onToggleTodo(index)}
+                />
+                <Input
+                  type='text'
+                  name={todo._id}
+                  value={todo.title}
+                  placeholder={todo.title}
+                  onChange={(e) => {
+                    onEditTodoHandler(e, index);
+                  }}
+                />
+                <Button onClick={onSaveEditTodo}>Save todo</Button>
+              </li>
+            ) : (
+              <li key={todo._id} className={styles.todoItem}>
+                <Checkbox
+                  label={todo.title}
+                  name={todo._id}
+                  value={todo._id}
+                  checked={checkedState[index]}
+                  onChange={() => onToggleTodo(index)}
+                />
+                <Button
+                  onClick={(e) => {
+                    onEditTodo(e, todo);
+                  }}>
+                  &#9998;
+                </Button>
+                <Button onClick={onRemoveTodo(index, todo._id)}>&times;</Button>
+              </li>
+            );
+          })}
+        </ul>
+        {todos.length > 0 && (
+          <div className={`${styles.selectAll}`}>
+            <SelectAllCheckbox
+              name='Select all'
+              label='Select all'
+              totalItems={todos.length}
+              totalChecked={totalChecked}
+              onSelectAll={onSelectAll}
+            />
+          </div>
+        )}
+      </Suspense>
+    </div>
   );
 }
 
